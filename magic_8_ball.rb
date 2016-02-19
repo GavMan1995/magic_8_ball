@@ -32,32 +32,20 @@ def the_answer
   main_page
 end
 
-def main_page
-
-  puts "\n\n---WELCOME TO MAGIC 8 BALL---\n please ask a question"
-  @response = gets.strip.downcase
-  if @response == "quit"
-    puts "thank you come again"
-  elsif @easter_egg.has_key?(@response)
-    puts @easter_egg[@response]
-    main_page
-  else
-    the_answer
-  end
-  # case response
-  # when
-  #     puts "ask question"
-  #     ques = gets.strip
-  #     the_answer
-  # when "2"
-  #     add
-  # when "4"
-  #   puts @answers + @user_answers
-  # when "quit"
-  #   puts "thank you come again"
-  #   exit
-  # end
-  # main_page
+def dead
+  puts "thank you come again"
+  exit(0)
 end
 
+def puts_egg
+  puts @easter_egg[@response]
+  main_page
+end
+
+def main_page
+  puts "\n\n---WELCOME TO MAGIC 8 BALL---\n please ask a question"
+  @response = gets.strip.downcase
+  @response == "quit" ? dead :  @easter_egg.keys.include?(@response) ? puts_egg : the_answer
+  main_page
+end
 main_page
